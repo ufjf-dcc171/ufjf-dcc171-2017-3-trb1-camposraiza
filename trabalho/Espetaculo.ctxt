@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Espetaculo()
+comment1.params=nome\ descricao
+comment1.target=Espetaculo(java.lang.String,\ java.lang.String)
+numComments=2
