@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Sistema()
+comment1.params=tipo
+comment1.target=void\ incluirEspetaculo(java.lang.String)
+comment2.params=tipo
+comment2.target=void\ alterarEspetaculo(java.lang.String)
+comment3.params=tipo
+comment3.target=void\ excluirEspetaculo(java.lang.String)
+comment4.params=tipo\ nome\ descricao\ faixaEtaria\ artista\ duracao\ temporada
+comment4.target=void\ incluirEspetaculo(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ Pessoa,\ java.lang.String,\ java.lang.String)
+comment5.params=tipo\ nome\ descricao\ faixaEtaria\ artista\ duracao\ temporada
+comment5.target=void\ alterarEspetaculo(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ Pessoa,\ java.lang.String,\ java.lang.String)
+comment6.params=tipo\ nome\ descricao\ faixaEtaria\ artista\ duracao\ temporada
+comment6.target=void\ excluirEspetaculo(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ Pessoa,\ java.lang.String,\ java.lang.String)
+numComments=7

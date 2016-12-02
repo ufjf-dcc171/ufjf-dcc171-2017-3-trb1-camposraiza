@@ -13,7 +13,14 @@ public class Sala
        this.totalAssentos = TAssentos;
 
        int num = (int)Math.sqrt(this.totalAssentos);
-       mapa = new int[num][num];
+       int num2 = this.totalAssentos/num;
+       
+       mapa = new int[num+1][];
+       for(int i = 0; i < num ; i++)
+       {
+           mapa[i] = new int[num2];
+       }
+       mapa[num] = new int[this.totalAssentos%num];
     }
     
     public void incluirSala(int numSala){

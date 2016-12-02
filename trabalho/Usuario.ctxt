@@ -1,0 +1,4 @@
+#BlueJ class context
+comment0.params=login\ senha\ tipo
+comment0.target=Usuario(java.lang.String,\ java.lang.String,\ int)
+numComments=1

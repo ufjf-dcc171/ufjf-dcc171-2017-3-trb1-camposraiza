@@ -1,4 +1,4 @@
 #BlueJ class context
-comment0.params=nome\ cpf\ rg\ email\ dataNascimento
-comment0.target=Pessoa(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
+comment0.params=nome\ cpf\ rg\ email\ dataNascimento\ login\ senha
+comment0.target=Pessoa(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
 numComments=1
