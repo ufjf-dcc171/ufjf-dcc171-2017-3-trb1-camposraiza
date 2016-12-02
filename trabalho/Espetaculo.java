@@ -12,7 +12,7 @@ public class Espetaculo
      public Espetaculo(String nome, String descricao){
      this.nome = nome;
      this.descricao = descricao;
-     artista.
+     
     }
 }
 
