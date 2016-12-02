@@ -1,6 +1,18 @@
 #BlueJ class context
 comment0.params=
 comment0.target=Espetaculo()
-comment1.params=nome\ descricao
-comment1.target=Espetaculo(java.lang.String,\ java.lang.String)
-numComments=2
+comment1.params=nome\ tipo\ descricao\ faixaEtaria\ duracao\ temporada\ artista
+comment1.target=Espetaculo(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ Pessoa)
+comment2.params=tipo
+comment2.target=void\ incluirEspetaculo(java.lang.String)
+comment3.params=tipo
+comment3.target=void\ alterarEspetaculo(java.lang.String)
+comment4.params=tipo
+comment4.target=void\ excluirEspetaculo(java.lang.String)
+comment5.params=tipo\ nome\ descricao\ faixaEtaria\ artista\ duracao\ temporada
+comment5.target=void\ incluirEspetaculo(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ Pessoa,\ java.lang.String,\ java.lang.String)
+comment6.params=tipo\ nome\ descricao\ faixaEtaria\ artista\ duracao\ temporada
+comment6.target=void\ alterarEspetaculo(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ Pessoa,\ java.lang.String,\ java.lang.String)
+comment7.params=tipo\ nome\ descricao\ faixaEtaria\ artista\ duracao\ temporada
+comment7.target=void\ excluirEspetaculo(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ Pessoa,\ java.lang.String,\ java.lang.String)
+numComments=8

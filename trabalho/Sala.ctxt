@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=numSala\ TAssentos
+comment0.target=Sala(int,\ int)
+comment1.params=numSala
+comment1.target=void\ incluirSala(int)
+comment2.params=numSala
+comment2.target=void\ alterarSala(int)
+comment3.params=numSala
+comment3.target=void\ excluirSala(int)
+numComments=4

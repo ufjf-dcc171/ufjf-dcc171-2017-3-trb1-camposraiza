@@ -1,5 +1,13 @@
 public class Pessoa
 {
-    private String nome, cpf, rg, email, dataNascimento;
+    protected String nome, cpf, rg, email, dataNascimento;
+    
+    public Pessoa (String nome, String cpf, String rg, String email, String dataNascimento){
+    this.nome = nome;
+    this.cpf = cpf;
+    this.rg  = rg;
+    this.email = email;
+    this.dataNascimento = dataNascimento;
+    }
 
 }

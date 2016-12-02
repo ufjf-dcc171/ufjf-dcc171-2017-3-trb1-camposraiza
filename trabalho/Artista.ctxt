@@ -1,2 +1,10 @@
 #BlueJ class context
-numComments=0
+comment0.params=nome\ cpf\ rg\ email\ dataNascimento\ celular
+comment0.target=Artista(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
+comment1.params=cpf
+comment1.target=void\ incluirArtista(java.lang.String)
+comment2.params=cpf
+comment2.target=void\ alterarArtista(java.lang.String)
+comment3.params=cpf
+comment3.target=void\ excluirArtista(java.lang.String)
+numComments=4
