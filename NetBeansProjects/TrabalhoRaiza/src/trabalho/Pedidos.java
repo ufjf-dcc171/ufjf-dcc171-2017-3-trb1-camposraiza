@@ -7,6 +7,17 @@ class Pedidos {
     String descricao;
     Date data;
     boolean status;
+    
+    public Pedidos () {
+        
+    }
+    
+    public Pedidos (int mesa, String descricao, Date data) {
+        this.mesa = mesa;
+        this.descricao = descricao;
+        this.data = data;
+        this.status = true;
+    }
 
     public int getMesa() {
         return mesa;
@@ -43,7 +54,13 @@ class Pedidos {
 
     @Override
     public String toString() {
-        return "Pedidos{"+ "mesa=" + mesa + ", status=" + status + ", descricao=" + descricao + ", data=" + data + '}';
+        String statusConvertido;
+        if (status) {
+            statusConvertido = "Aberto";
+        } else {
+            statusConvertido = "Fechado";
+        }
+        return "Pedido{"+ "mesa=" + mesa + ", status=" + statusConvertido + ", descricao=" + descricao + ", abertura=" + data.getHours() + ":" + data.getMinutes() + '}';
     }
     
 }
