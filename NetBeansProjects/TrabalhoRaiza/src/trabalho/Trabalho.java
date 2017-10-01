@@ -17,9 +17,3 @@ public class Trabalho {
         janela.setVisible(true);
     }
 }
-
-/* - status (if do editar)
-- horas
-- detalhamento
-- mensagem de erro: infos faltando
-*/

@@ -69,7 +69,7 @@ class JanelaPedido extends JFrame {
                     s.format(data);
                     s.setLenient(false);
                     if (descricao.equals("Descrição")) {
-                        JOptionPane.showMessageDialog(null, "Preencha todos os campos.");
+                        JOptionPane.showMessageDialog(null, "Favor preencher todos os campos.");
                         return;
                     }
                     Pedidos p = new Pedidos(mesa, descricao, s.parse(txData.getText()));
@@ -82,7 +82,7 @@ class JanelaPedido extends JFrame {
                     txDescricao.setText("Descrição");
                     lstPedidos.updateUI();
                 } catch (NumberFormatException | ParseException ex) {
-                    JOptionPane.showMessageDialog(null, "Não foi possível criar o pedido.");
+                    JOptionPane.showMessageDialog(null, "Não foi possível criar o pedido. Favor verificar se todos os campos foram corretamente preechidos.");
                 }
             }
         });
