@@ -54,7 +54,7 @@ class Pedidos {
 
     @Override
     public String toString() {
-        String statusConvertido;
+        String statusConvertido; //para aparecer o texto e não 'true' ou 'false'
         if (status) {
             statusConvertido = "Aberto";
         } else {

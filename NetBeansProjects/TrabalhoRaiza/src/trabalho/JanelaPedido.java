@@ -68,20 +68,20 @@ class JanelaPedido extends JFrame {
                     Date data = new Date();
                     s.format(data);
                     s.setLenient(false);
-                    if (descricao.equals("Descrição")) {
+                    if (descricao.equals("Descrição")) { //verifica se há descrição
                         JOptionPane.showMessageDialog(null, "Favor preencher todos os campos.");
                         return;
                     }
                     Pedidos p = new Pedidos(mesa, descricao, s.parse(txData.getText()));
                     pedidos.add(p);
 
-                    txMesa.setText("Número da mesa");
+                    txMesa.setText("Número da mesa"); //retorna as mensagens para default
                     txStatus.setText("Status: Aberto");
-                    txStatus.setEnabled(false);
+                    txStatus.setEnabled(false); //deixa o status bloquado enquanto o pedido está aberto
                     txData.setText("HH:mm");
                     txDescricao.setText("Descrição");
                     lstPedidos.updateUI();
-                } catch (NumberFormatException | ParseException ex) {
+                } catch (NumberFormatException | ParseException ex) { //verifica formatação dos dados
                     JOptionPane.showMessageDialog(null, "Não foi possível criar o pedido. Favor verificar se todos os campos foram corretamente preechidos.");
                 }
             }
@@ -104,7 +104,7 @@ class JanelaPedido extends JFrame {
                     return;
                 }
                 Pedidos p = pedidos.get(lstPedidos.getSelectedIndex());
-                if (p.status) {
+                if (p.status) { //verifica se o status está Aberto
                     p.setMesa(Integer.parseInt(txMesa.getText()));
                     Date data = new Date();
                     SimpleDateFormat s = new SimpleDateFormat("HH:mm");
@@ -116,11 +116,11 @@ class JanelaPedido extends JFrame {
                         Logger.getLogger(JanelaPedido.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     p.descricao = txDescricao.getText();
-                    if (txStatus.getText().equals("Fechado")) {
+                    if (txStatus.getText().equals("Fechado")) { //se estiver fechado, altera para false
                         p.status = false;
                     }
 
-                    txMesa.setText("Número da mesa");
+                    txMesa.setText("Número da mesa"); //retorna mensagens para default
                     txStatus.setText("Status: Aberto");
                     txStatus.setEnabled(false);
                     txData.setText("HH:mm");
@@ -128,7 +128,7 @@ class JanelaPedido extends JFrame {
 
                     lstPedidos.updateUI();
                 } else {
-                    txMesa.setText("Número da mesa");
+                    txMesa.setText("Número da mesa"); //se o pedido estiver fechado, mostra mensagem de erro
                     txStatus.setText("Status: Aberto");
                     txStatus.setEnabled(false);
                     txData.setText("HH:mm");
@@ -142,8 +142,8 @@ class JanelaPedido extends JFrame {
             public void valueChanged(ListSelectionEvent e) {
                 Pedidos selecionada = lstPedidos.getSelectedValue();
                 if (selecionada != null) {
-                    txMesa.setText(Integer.toString(selecionada.getMesa()));
-                    if (selecionada.getStatus()) {
+                    txMesa.setText(Integer.toString(selecionada.getMesa())); 
+                    if (selecionada.getStatus()) { //deixa o status editável quando o pedido é clicado
                         txStatus.setText("Aberto");
                         txStatus.setEnabled(true);
                     } else {
