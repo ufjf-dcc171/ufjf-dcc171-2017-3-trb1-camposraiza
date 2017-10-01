@@ -94,7 +94,6 @@ class JanelaPedido extends JFrame {
                     return;
                 }
                 pedidos.remove(lstPedidos.getSelectedValue());
-                //lstPedidos.clearSelection();
                 lstPedidos.updateUI();
             }
         });
