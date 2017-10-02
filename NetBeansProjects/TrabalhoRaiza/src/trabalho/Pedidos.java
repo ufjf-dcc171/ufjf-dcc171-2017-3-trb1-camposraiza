@@ -6,16 +6,18 @@ class Pedidos {
     int mesa;    
     String descricao;
     Date data;
+    Date termino;
     boolean status;
     
     public Pedidos () {
         
     }
     
-    public Pedidos (int mesa, String descricao, Date data) {
+    public Pedidos (int mesa, String descricao, Date data, Date termino) {
         this.mesa = mesa;
         this.descricao = descricao;
         this.data = data;
+        this.termino = termino;
         this.status = true;
     }
 
@@ -41,6 +43,14 @@ class Pedidos {
 
     public void setData(Date data) {
         this.data = data;
+    }
+    
+    public Date getTermino() {
+        return termino;
+    }
+
+    public void setTermino(Date termino) {
+        this.termino = termino;
     }   
     
     
@@ -60,7 +70,7 @@ class Pedidos {
         } else {
             statusConvertido = "Fechado";
         }
-        return "Pedido{"+ "mesa=" + mesa + ", status=" + statusConvertido + ", descricao=" + descricao + ", abertura=" + data.getHours() + ":" + data.getMinutes() + '}';
+        return "Pedido{"+ "mesa=" + mesa + ", status=" + statusConvertido + ", descricao=" + descricao + ", abertura=" + data.getHours() + ":" + data.getMinutes()+ ", fechamento=" + termino.getHours() + ":" + termino.getMinutes() + '}';
     }
     
 }
