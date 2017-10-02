@@ -3,22 +3,23 @@ import java.util.Date;
 
 class Pedidos {
     
-    int mesa;    
-    String descricao;
-    Date data;
-    Date termino;
-    boolean status;
+   private int mesa;    
+   private String descricao;
+   private Date data;
+   private Date termino;
+   private boolean status;
     
     public Pedidos () {
         
     }
     
-    public Pedidos (int mesa, String descricao, Date data, Date termino) {
+    public Pedidos (int mesa, String descricao, Date data) {
         this.mesa = mesa;
         this.descricao = descricao;
-        this.data = data;
-        this.termino = termino;
+        this.data = data;        
         this.status = true;
+        Date termino;
+        this.termino = null;
     }
 
     public int getMesa() {
@@ -70,7 +71,15 @@ class Pedidos {
         } else {
             statusConvertido = "Fechado";
         }
-        return "Pedido{"+ "mesa=" + mesa + ", status=" + statusConvertido + ", descricao=" + descricao + ", abertura=" + data.getHours() + ":" + data.getMinutes()+ ", fechamento=" + termino.getHours() + ":" + termino.getMinutes() + '}';
+        
+        String horaTermino = "";
+        if (termino != null){
+            horaTermino = termino.getHours()+":"+termino.getMinutes();
+        }
+        else{
+            horaTermino = " Pedido aberto";
+        }
+        return "Pedido{"+ "mesa=" + mesa + ", status=" + statusConvertido + ", descricao=" + descricao + ", abertura=" + data.getHours() + ":" + data.getMinutes() + " término" + horaTermino + '}';
     }
     
 }
