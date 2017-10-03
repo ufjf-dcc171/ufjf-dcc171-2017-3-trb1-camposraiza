@@ -1,52 +1,43 @@
 package trabalho;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 class Pedidos {
-    
-   private int mesa;    
-   private String descricao;
-   private Date data;
-   private Date termino;
-   private boolean status;
-   private List<Item> itens;
-    
-    public Pedidos () {
-        
-    }  
-    
-    public Pedidos (int mesa, String descricao, Date data) {
+
+    private int mesa;
+    private Date data;
+    private Date termino;
+    private boolean status;
+    private List<ItemPedido> itens;
+
+    public Pedidos() {
+
+    }
+
+    public Pedidos(int mesa, Date data) {
         this.mesa = mesa;
-        this.descricao = descricao;
-        this.data = data;        
+        this.data = data;
         this.status = true;
         Date termino;
-        this.termino = null;        
-    }   
+        this.termino = null;
+    }
 
-    public List<Item> getItens() {
+    public List<ItemPedido> getItens() {
         return itens;
     }
 
-    public void setItens(List<Item> itens) {
+    public void setItens(List<ItemPedido> itens) {
         this.itens = itens;
     }
-    
+
     public int getMesa() {
         return mesa;
     }
 
     public void setMesa(int mesa) {
         this.mesa = mesa;
-    }
-    
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     public Date getData() {
@@ -56,16 +47,15 @@ class Pedidos {
     public void setData(Date data) {
         this.data = data;
     }
-    
+
     public Date getTermino() {
         return termino;
     }
 
     public void setTermino(Date termino) {
         this.termino = termino;
-    }   
-    
-    
+    }
+
     public boolean getStatus() {
         return status;
     }
@@ -73,10 +63,14 @@ class Pedidos {
     public void setStatus(boolean status) {
         this.status = status;
     }
-    
-    public void adicionaItem(){
-    Pedidos p = new Pedidos();
+
+    public void adicionaItem(Item item, int quantidade) {
         
+        if (itens == null) {
+            itens = new ArrayList<>();
+        }
+        itens.add(new ItemPedido(item, this, quantidade));       
+
     }
 
     @Override
@@ -87,15 +81,14 @@ class Pedidos {
         } else {
             statusConvertido = "Fechado";
         }
-        
+
         String horaTermino = "";
-        if (termino != null){
-            horaTermino = termino.getHours()+":"+termino.getMinutes();
-        }
-        else{
+        if (termino != null) {
+            horaTermino = termino.getHours() + ":" + termino.getMinutes();
+        } else {
             horaTermino = " Pedido aberto";
         }
-        return "Pedido{"+ "mesa= " + mesa + ", status= " + statusConvertido + ", descricao= " + descricao + ", abertura= " + data.getHours() + ":" + data.getMinutes() + " término= " + horaTermino + '}';
+        return "Pedido{" + "mesa= " + mesa + ", status= " + statusConvertido + ", abertura= " + data.getHours() + ":" + data.getMinutes() + " término= " + horaTermino + '}';
     }
-    
+
 }

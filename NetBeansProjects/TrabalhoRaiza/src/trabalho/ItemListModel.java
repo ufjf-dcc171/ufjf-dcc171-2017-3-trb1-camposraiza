@@ -1,18 +1,20 @@
 package trabalho;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import javax.swing.ComboBoxModel;
 import javax.swing.ListModel;
 import javax.swing.event.ListDataListener;
 
+public class ItemListModel implements ListModel<Item>, ComboBoxModel<Item> {
 
-public class ItemListModel implements ListModel <Item>{
-    
     private final List<Item> itens;
     private final List<ListDataListener> dataLinisters;
+    private Item selectedItem;
 
-    public ItemListModel(List<Item> itens) {
-        this.itens = itens;
+    public ItemListModel() {
+        this.itens = Arrays.asList(new Item[]{new Item("refrigerante", 2.00), new Item("salgado", 3.00)});
         this.dataLinisters = new ArrayList();
     }
 
@@ -31,5 +33,16 @@ public class ItemListModel implements ListModel <Item>{
     public void removeListDataListener(ListDataListener l) {
         this.dataLinisters.remove(l);
     }
-}
 
+    @Override
+    public void setSelectedItem(Object anItem) {
+        if (anItem instanceof Item) {
+            this.selectedItem = (Item) anItem;
+        }
+    }
+
+    @Override
+    public Item getSelectedItem() {
+        return selectedItem;
+    }
+}

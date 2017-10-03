@@ -26,7 +26,7 @@ import javax.swing.event.ListSelectionListener;
 
 class JanelaPedido extends JFrame {
 
-    private final List<Pedidos> pedidos = new ArrayList<Pedidos>();    
+    private final List<Pedidos> pedidos = new ArrayList<Pedidos>();
     private final JButton btCriaPedido = new JButton("Cria Pedido");
     private final JButton btAdicionaItem = new JButton("Adiciona Item");
     private final JButton btEditaPedido = new JButton("Edita Pedido");
@@ -38,12 +38,12 @@ class JanelaPedido extends JFrame {
     private final JLabel lbData = new JLabel("Horário de abertura (HH:mm)");
     private JTextField txTermino = new JTextField("");
     private final JLabel lbTermino = new JLabel("Horário de fechamento (HH:mm)");
-    private JTextField txDescricao = new JTextField("");
-    private final JLabel lbDescricao = new JLabel("Descrição");
+    //private JTextField txDescricao = new JTextField("");
+    //private final JLabel lbDescricao = new JLabel("Descrição");
     private final JList<Pedidos> lstPedidos = new JList<Pedidos>(new DefaultListModel<>());
 
     private JanelaItem janela = new JanelaItem();
-    
+
     public JanelaPedido() {
 
         lstPedidos.setModel(new PedidoListModel(pedidos));
@@ -62,11 +62,11 @@ class JanelaPedido extends JFrame {
         edits.add(txData);
         edits.add(lbTermino);
         edits.add(txTermino);
-        edits.add(lbDescricao);
-        edits.add(txDescricao);
+        //edits.add(lbDescricao);
+       // edits.add(txDescricao);
         add(botoes, BorderLayout.SOUTH);
         botoes.add(btCriaPedido);
-       botoes.add(btAdicionaItem);
+        botoes.add(btAdicionaItem);
         botoes.add(btEditaPedido);
         botoes.add(btExcluiPedido);
 
@@ -77,25 +77,19 @@ class JanelaPedido extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     int mesa = Integer.parseInt(txMesa.getText());
-                    String descricao = txDescricao.getText();
+                  //  String descricao = txDescricao.getText();
                     SimpleDateFormat s = new SimpleDateFormat("HH:mm");
                     Date data = new Date();
                     Date termino = new Date();
                     s.format(data);
                     s.format(termino);
                     s.setLenient(false);
-                     if (txTermino.getText().equals(""))
-                    {
+                    if (txTermino.getText().equals("")) {
                         termino = null; // Fechamento vazio;
-                       
+
                     }
-                     
-                    if (descricao.equals("Descrição")) { //verifica se há descrição
-                        JOptionPane.showMessageDialog(null, "Favor preencher todos os campos.");
-                        return;
-                    }
-                   
-                    Pedidos p = new Pedidos(mesa, descricao, s.parse(txData.getText()));
+
+                    Pedidos p = new Pedidos(mesa, s.parse(txData.getText()));
                     pedidos.add(p);
 
                     txMesa.setText(""); //retorna as mensagens para default
@@ -103,26 +97,25 @@ class JanelaPedido extends JFrame {
                     txStatus.setEnabled(false); //deixa o status bloquado enquanto o pedido está aberto
                     txData.setText("");
                     txTermino.setText("");
-                    txDescricao.setText("");
                     lstPedidos.updateUI();
                 } catch (NumberFormatException | ParseException ex) { //verifica formatação dos dados
                     JOptionPane.showMessageDialog(null, "Não foi possível criar o pedido. Favor verificar se todos os campos foram corretamente preechidos.");
                 }
             }
         });
-        
+
         btAdicionaItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (lstPedidos.isSelectionEmpty()) {
                     JOptionPane.showMessageDialog(null, "É necessário selecionar um pedido para incluir itens");
                     return;
-                } else if(lstPedidos.getSelectedValue().getStatus() == false)
-                    {
-                        JOptionPane.showMessageDialog(null, "Não é possível acrescentar itens, pois o pedido está fechado");
-                        return; 
-                    }
-                
+                } else if (lstPedidos.getSelectedValue().getStatus() == false) {
+                    JOptionPane.showMessageDialog(null, "Não é possível acrescentar itens, pois o pedido está fechado");
+                    return;
+                }
+                Pedidos p = lstPedidos.getSelectedValue();
+                janela.setSelectedPedido(p);
                 janela.setSize(500, 500);
                 janela.setLocationRelativeTo(null);
                 janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -161,18 +154,24 @@ class JanelaPedido extends JFrame {
                     } catch (ParseException ex) {
                         Logger.getLogger(JanelaPedido.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    p.setDescricao(txDescricao.getText()); //grava a edição
+                  //  p.setDescricao(txDescricao.getText()); //grava a edição
 
+                  if (!txTermino.equals("")){
                     if (txStatus.getText().equals("Fechado")) { //se estiver fechado, altera para false
                         p.setStatus(false);
                     }
+                  }
+                  else{
+                   JOptionPane.showMessageDialog(null, "Favor preencher a hora de fechamento antes de encerrar o pedido.");
+
+                  }
 
                     txMesa.setText(""); //retorna mensagens para default
                     txStatus.setText("Status: Aberto");
                     txStatus.setEnabled(false);
                     txData.setText("");
                     txTermino.setText("");
-                    txDescricao.setText("");
+                  //  txDescricao.setText("");
 
                     lstPedidos.updateUI();
                 } else {
@@ -181,7 +180,7 @@ class JanelaPedido extends JFrame {
                     txStatus.setEnabled(false);
                     txData.setText("");
                     txTermino.setText("");
-                    txDescricao.setText("");
+                  //  txDescricao.setText("");
                     JOptionPane.showMessageDialog(null, "O pedido está fechado, não pode ser editado");
                 }
             }
@@ -200,7 +199,7 @@ class JanelaPedido extends JFrame {
                         txStatus.setText("Status: Fechado");
                         txStatus.setEnabled(true);
                     }
-                    txDescricao.setText(selecionada.getDescricao());
+                  //  txDescricao.setText(selecionada.getDescricao());
                     SimpleDateFormat s = new SimpleDateFormat("HH:mm");
 
                     s.setLenient(false);
