@@ -66,7 +66,7 @@ class JanelaPedido extends JFrame {
         edits.add(txDescricao);
         add(botoes, BorderLayout.SOUTH);
         botoes.add(btCriaPedido);
-       // botoes.add(btAdicionaItem);
+       botoes.add(btAdicionaItem);
         botoes.add(btEditaPedido);
         botoes.add(btExcluiPedido);
 
