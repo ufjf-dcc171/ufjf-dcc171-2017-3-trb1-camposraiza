@@ -1,5 +1,7 @@
 package trabalho;
 import java.util.Date;
+import java.util.List;
+
 
 class Pedidos {
     
@@ -8,10 +10,11 @@ class Pedidos {
    private Date data;
    private Date termino;
    private boolean status;
+   private List<Item> itens;
     
     public Pedidos () {
         
-    }
+    }  
     
     public Pedidos (int mesa, String descricao, Date data) {
         this.mesa = mesa;
@@ -19,9 +22,17 @@ class Pedidos {
         this.data = data;        
         this.status = true;
         Date termino;
-        this.termino = null;
+        this.termino = null;        
+    }   
+
+    public List<Item> getItens() {
+        return itens;
     }
 
+    public void setItens(List<Item> itens) {
+        this.itens = itens;
+    }
+    
     public int getMesa() {
         return mesa;
     }
@@ -62,6 +73,11 @@ class Pedidos {
     public void setStatus(boolean status) {
         this.status = status;
     }
+    
+    public void adicionaItem(){
+    Pedidos p = new Pedidos();
+        
+    }
 
     @Override
     public String toString() {
@@ -79,7 +95,7 @@ class Pedidos {
         else{
             horaTermino = " Pedido aberto";
         }
-        return "Pedido{"+ "mesa=" + mesa + ", status=" + statusConvertido + ", descricao=" + descricao + ", abertura=" + data.getHours() + ":" + data.getMinutes() + " término" + horaTermino + '}';
+        return "Pedido{"+ "mesa= " + mesa + ", status= " + statusConvertido + ", descricao= " + descricao + ", abertura= " + data.getHours() + ":" + data.getMinutes() + " término= " + horaTermino + '}';
     }
     
 }

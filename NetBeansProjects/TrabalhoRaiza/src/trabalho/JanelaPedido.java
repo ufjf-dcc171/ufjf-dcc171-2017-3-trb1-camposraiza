@@ -26,11 +26,11 @@ import javax.swing.event.ListSelectionListener;
 
 class JanelaPedido extends JFrame {
 
-    private final List<Pedidos> pedidos = new ArrayList<Pedidos>();
-    // private final List<Pedidos> eventos = new ArrayList<Pedidos>();
+    private final List<Pedidos> pedidos = new ArrayList<Pedidos>();    
     private final JButton btCriaPedido = new JButton("Cria Pedido");
-    private final JButton btExcluiPedido = new JButton("Exclui Pedido");
+    private final JButton btAdicionaItem = new JButton("Adiciona Item");
     private final JButton btEditaPedido = new JButton("Edita Pedido");
+    private final JButton btExcluiPedido = new JButton("Exclui Pedido");
     private final JLabel lbMesa = new JLabel("Número da mesa");
     private JTextField txMesa = new JTextField("");
     private JTextField txStatus = new JTextField("Status: Aberto");
@@ -42,6 +42,8 @@ class JanelaPedido extends JFrame {
     private final JLabel lbDescricao = new JLabel("Descrição");
     private final JList<Pedidos> lstPedidos = new JList<Pedidos>(new DefaultListModel<>());
 
+    private JanelaItem janela;
+    
     public JanelaPedido() {
 
         lstPedidos.setModel(new PedidoListModel(pedidos));
@@ -64,6 +66,7 @@ class JanelaPedido extends JFrame {
         edits.add(txDescricao);
         add(botoes, BorderLayout.SOUTH);
         botoes.add(btCriaPedido);
+       // botoes.add(btAdicionaItem);
         botoes.add(btEditaPedido);
         botoes.add(btExcluiPedido);
 
@@ -105,6 +108,20 @@ class JanelaPedido extends JFrame {
                 } catch (NumberFormatException | ParseException ex) { //verifica formatação dos dados
                     JOptionPane.showMessageDialog(null, "Não foi possível criar o pedido. Favor verificar se todos os campos foram corretamente preechidos.");
                 }
+            }
+        });
+        
+        btAdicionaItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (lstPedidos.isSelectionEmpty()) {
+                    JOptionPane.showMessageDialog(null, "É necessário selecionar um pedido para incluir itens");
+                    return;
+                } else if(lstPedidos.getSelectedValue().getStatus() == false)
+                    {
+                        JOptionPane.showMessageDialog(null, "Não é possível acrescentar itens, pois o pedido está fechado");
+                        return; 
+                    }               
             }
         });
 
