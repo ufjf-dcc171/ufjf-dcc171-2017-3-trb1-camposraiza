@@ -42,7 +42,7 @@ class JanelaPedido extends JFrame {
     private final JLabel lbDescricao = new JLabel("Descrição");
     private final JList<Pedidos> lstPedidos = new JList<Pedidos>(new DefaultListModel<>());
 
-    private JanelaItem janela;
+    private JanelaItem janela = new JanelaItem();
     
     public JanelaPedido() {
 
@@ -121,7 +121,12 @@ class JanelaPedido extends JFrame {
                     {
                         JOptionPane.showMessageDialog(null, "Não é possível acrescentar itens, pois o pedido está fechado");
                         return; 
-                    }               
+                    }
+                
+                janela.setSize(500, 500);
+                janela.setLocationRelativeTo(null);
+                janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                janela.setVisible(true);
             }
         });
 
