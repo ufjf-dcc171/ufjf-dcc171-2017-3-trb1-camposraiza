@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-class Pedidos {
+class Pedido {
 
     private int mesa;
     private Date data;
@@ -12,16 +12,17 @@ class Pedidos {
     private boolean status;
     private List<ItemPedido> itens;
 
-    public Pedidos() {
+    public Pedido() {
 
     }
 
-    public Pedidos(int mesa, Date data) {
+    public Pedido(int mesa, Date data) {
         this.mesa = mesa;
         this.data = data;
         this.status = true;
         Date termino;
         this.termino = null;
+        this.itens = new ArrayList<>();
     }
 
     public List<ItemPedido> getItens() {
@@ -65,10 +66,6 @@ class Pedidos {
     }
 
     public void adicionaItem(Item item, int quantidade) {
-        
-        if (itens == null) {
-            itens = new ArrayList<>();
-        }
         itens.add(new ItemPedido(item, this, quantidade));       
 
     }
@@ -82,13 +79,17 @@ class Pedidos {
             statusConvertido = "Fechado";
         }
 
-        String horaTermino = "";
+        String horaTermino;
         if (termino != null) {
             horaTermino = termino.getHours() + ":" + termino.getMinutes();
         } else {
             horaTermino = " Pedido aberto";
         }
-        return "Pedido{" + "mesa= " + mesa + ", status= " + statusConvertido + ", abertura= " + data.getHours() + ":" + data.getMinutes() + " término= " + horaTermino + '}';
+        String detalhePedido = "Pedido{" + "mesa= " + mesa + ", status= " + statusConvertido + ", abertura= " + data.getHours() + ":" + data.getMinutes() + " término= " + horaTermino + '}';
+        for (ItemPedido p : this.itens) {
+            detalhePedido += System.lineSeparator() + "   - " + p.getItem().getNome() + "(" + p.getQuantidade() + ")";
+        }
+        return detalhePedido;
     }
 
 }

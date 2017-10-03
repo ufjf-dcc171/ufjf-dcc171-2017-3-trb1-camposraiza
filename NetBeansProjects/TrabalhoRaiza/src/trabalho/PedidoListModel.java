@@ -6,10 +6,10 @@ import javax.swing.ListModel;
 import javax.swing.event.ListDataListener;
 
 public class PedidoListModel implements ListModel {
-    private final List<Pedidos> pedidos;
+    private final List<Pedido> pedidos;
     private final List<ListDataListener> dataLinisters;
 
-    public PedidoListModel(List<Pedidos> pedidos) {
+    public PedidoListModel(List<Pedido> pedidos) {
         this.pedidos = pedidos;
         this.dataLinisters = new ArrayList();
     }
@@ -18,7 +18,7 @@ public class PedidoListModel implements ListModel {
         return pedidos.size();
     }
 
-    public Pedidos getElementAt(int index) {
+    public Pedido getElementAt(int index) {
         return pedidos.get(index);
     }
 

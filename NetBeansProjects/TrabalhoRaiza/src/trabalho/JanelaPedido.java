@@ -26,7 +26,7 @@ import javax.swing.event.ListSelectionListener;
 
 class JanelaPedido extends JFrame {
 
-    private final List<Pedidos> pedidos = new ArrayList<Pedidos>();
+    private final List<Pedido> pedidos = new ArrayList<Pedido>();
     private final JButton btCriaPedido = new JButton("Cria Pedido");
     private final JButton btAdicionaItem = new JButton("Adiciona Item");
     private final JButton btEditaPedido = new JButton("Edita Pedido");
@@ -38,9 +38,7 @@ class JanelaPedido extends JFrame {
     private final JLabel lbData = new JLabel("Horário de abertura (HH:mm)");
     private JTextField txTermino = new JTextField("");
     private final JLabel lbTermino = new JLabel("Horário de fechamento (HH:mm)");
-    //private JTextField txDescricao = new JTextField("");
-    //private final JLabel lbDescricao = new JLabel("Descrição");
-    private final JList<Pedidos> lstPedidos = new JList<Pedidos>(new DefaultListModel<>());
+    private final JList<Pedido> lstPedidos = new JList<Pedido>(new DefaultListModel<>());
 
     private JanelaItem janela = new JanelaItem();
 
@@ -62,8 +60,6 @@ class JanelaPedido extends JFrame {
         edits.add(txData);
         edits.add(lbTermino);
         edits.add(txTermino);
-        //edits.add(lbDescricao);
-       // edits.add(txDescricao);
         add(botoes, BorderLayout.SOUTH);
         botoes.add(btCriaPedido);
         botoes.add(btAdicionaItem);
@@ -77,7 +73,6 @@ class JanelaPedido extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     int mesa = Integer.parseInt(txMesa.getText());
-                  //  String descricao = txDescricao.getText();
                     SimpleDateFormat s = new SimpleDateFormat("HH:mm");
                     Date data = new Date();
                     Date termino = new Date();
@@ -89,7 +84,7 @@ class JanelaPedido extends JFrame {
 
                     }
 
-                    Pedidos p = new Pedidos(mesa, s.parse(txData.getText()));
+                    Pedido p = new Pedido(mesa, s.parse(txData.getText()));
                     pedidos.add(p);
 
                     txMesa.setText(""); //retorna as mensagens para default
@@ -114,8 +109,9 @@ class JanelaPedido extends JFrame {
                     JOptionPane.showMessageDialog(null, "Não é possível acrescentar itens, pois o pedido está fechado");
                     return;
                 }
-                Pedidos p = lstPedidos.getSelectedValue();
+                Pedido p = lstPedidos.getSelectedValue();
                 janela.setSelectedPedido(p);
+                janela.setListPedidos(lstPedidos);
                 janela.setSize(500, 500);
                 janela.setLocationRelativeTo(null);
                 janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -139,7 +135,7 @@ class JanelaPedido extends JFrame {
                 if (lstPedidos.isSelectionEmpty()) {
                     return;
                 }
-                Pedidos p = pedidos.get(lstPedidos.getSelectedIndex());
+                Pedido p = pedidos.get(lstPedidos.getSelectedIndex());
                 if (p.getStatus()) { //verifica se o status está Aberto
                     p.setMesa(Integer.parseInt(txMesa.getText()));
                     Date data = new Date();
@@ -154,24 +150,15 @@ class JanelaPedido extends JFrame {
                     } catch (ParseException ex) {
                         Logger.getLogger(JanelaPedido.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                  //  p.setDescricao(txDescricao.getText()); //grava a edição
 
-                  if (!txTermino.equals("")){
-                    if (txStatus.getText().equals("Fechado")) { //se estiver fechado, altera para false
+                    if (p.getTermino() != null) {
                         p.setStatus(false);
                     }
-                  }
-                  else{
-                   JOptionPane.showMessageDialog(null, "Favor preencher a hora de fechamento antes de encerrar o pedido.");
-
-                  }
-
                     txMesa.setText(""); //retorna mensagens para default
                     txStatus.setText("Status: Aberto");
                     txStatus.setEnabled(false);
                     txData.setText("");
                     txTermino.setText("");
-                  //  txDescricao.setText("");
 
                     lstPedidos.updateUI();
                 } else {
@@ -180,7 +167,6 @@ class JanelaPedido extends JFrame {
                     txStatus.setEnabled(false);
                     txData.setText("");
                     txTermino.setText("");
-                  //  txDescricao.setText("");
                     JOptionPane.showMessageDialog(null, "O pedido está fechado, não pode ser editado");
                 }
             }
@@ -188,18 +174,17 @@ class JanelaPedido extends JFrame {
         lstPedidos.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                Pedidos selecionada = lstPedidos.getSelectedValue();
+                Pedido selecionada = lstPedidos.getSelectedValue();
                 if (selecionada != null) {
                     txMesa.setText(Integer.toString(selecionada.getMesa()));
                     if (selecionada.getStatus()) { //deixa o status editável quando o pedido é clicado
                         txStatus.setText("Status: Aberto");
-                        txStatus.setEnabled(true);
+                        txStatus.setEnabled(false);
 
                     } else {
                         txStatus.setText("Status: Fechado");
-                        txStatus.setEnabled(true);
+                        txStatus.setEnabled(false);
                     }
-                  //  txDescricao.setText(selecionada.getDescricao());
                     SimpleDateFormat s = new SimpleDateFormat("HH:mm");
 
                     s.setLenient(false);

@@ -2,20 +2,20 @@ package trabalho;
 
 public class ItemPedido {
 
-    public ItemPedido(Item item, Pedidos pedido, int quantidade) {
+    public ItemPedido(Item item, Pedido pedido, int quantidade) {
         this.item = item;
         this.pedido = pedido;
         this.quantidade = quantidade;
     }
 
     private Item item; 
-    private Pedidos pedido; 
+    private Pedido pedido; 
 
-    public Pedidos getPedido() {
+    public Pedido getPedido() {
         return pedido;
     }
 
-    public void setPedido(Pedidos pedido) {
+    public void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }
     

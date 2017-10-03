@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -24,12 +25,8 @@ public class JanelaItem extends JFrame {
     private final JButton btCancelar = new JButton("Cancelar");
      private final JLabel lbQuantidade = new JLabel("Quantidade");
     private JTextField txQuantidade = new JTextField("");
-    private Pedidos selectedPedido;
-
-    public JanelaItem(Pedidos selectedPedido) {
-        this();
-        this.selectedPedido = selectedPedido;
-    }
+    private Pedido selectedPedido;
+    private JList<Pedido> lstPedidos; 
 
     
     
@@ -65,18 +62,24 @@ public class JanelaItem extends JFrame {
         btAdicionaItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                selectedPedido.adicionaItem((Item)jComboBox.getSelectedItem(), Integer.parseInt(txQuantidade.getText()));
+                lstPedidos.updateUI();
+                ji.setVisible(false);
                 
             }
         });
 
     }
+    
+    public void setListPedidos (JList<Pedido> lstPedidos) {
+        this.lstPedidos = lstPedidos;
+    }
 
-    public Pedidos getSelectedPedido() {
+    public Pedido getSelectedPedido() {
         return selectedPedido;
     }
 
-    public void setSelectedPedido(Pedidos selectedPedido) {
+    public void setSelectedPedido(Pedido selectedPedido) {
         this.selectedPedido = selectedPedido;
     }
 
