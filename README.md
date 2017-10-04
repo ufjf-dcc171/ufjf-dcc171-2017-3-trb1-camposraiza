@@ -20,4 +20,4 @@ Edição dos pedidos - se não houver mais de um, não é possível editar o ped
 
 *Pontos onde podem ser realizadas melhorias futuras
 Inlcuir mensagens de erros para os demais casos de uso;
-Tornar a interface mais amigável, com botões distribuídos de maneira melhor que a atual.
+Tornar a interface mais amigável, com botões distribuídos de maneira melhor que a atual e inclusão de mais um item por vez.
