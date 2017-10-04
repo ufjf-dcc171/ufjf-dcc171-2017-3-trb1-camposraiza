@@ -189,7 +189,9 @@ class JanelaPedido extends JFrame {
 
                     s.setLenient(false);
                     txData.setText(s.format(selecionada.getData()));
-                    txTermino.setText(s.format(selecionada.getTermino()));
+                    if (selecionada.getTermino() != null) {
+                        txTermino.setText(s.format(selecionada.getTermino()));
+                    }
                 } else {
                     lstPedidos.setModel(new DefaultListModel<>());
                 }
